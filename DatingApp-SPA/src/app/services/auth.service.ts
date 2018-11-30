@@ -35,6 +35,13 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  getLoggedInUserId() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return this.jwtHelper.decodeToken(token).nameid;
+    }
+  }
+
   getLoggedInUsername() {
     const token = localStorage.getItem('token');
     if (token) {
